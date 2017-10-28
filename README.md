@@ -1,0 +1,2 @@
+This code is a subset of a comprehensive test system written in Python. It encapsulates all code which is specific to the use of the Froglogic 'Squish' Python interpreter, which is based on modified versions of several core Python classes.
+This approach ensures that the rest of the framework can use a standard Python version with no fear of 'pollution' from the Squich-specific classes.
