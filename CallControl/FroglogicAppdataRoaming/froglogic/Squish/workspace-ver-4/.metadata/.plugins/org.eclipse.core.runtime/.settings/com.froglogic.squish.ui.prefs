@@ -1,0 +1,10 @@
+ControlBarHeight=80
+ControlBarPositionX=1191
+ControlBarPositionY=31
+ControlBarWidth=260
+com.froglogic.squish.Browser=
+com.froglogic.squish.LibraryLogLevel=WARNING
+com.froglogic.squish.PMTimeout=1500
+com.froglogic.squish.SquishDirectory=C\:\\squish
+com.froglogic.squish.ui.runtime.activeTestSuite=suite_servers_windows
+eclipse.preferences.version=1

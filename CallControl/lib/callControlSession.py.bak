@@ -1,0 +1,119 @@
+#-------------------------------------------------------------------------------
+# Name:         callControlSession
+# Purpose:      This module defines the class CallControlSession, used to
+#               represent the attributes and methods associated with a
+#               CallControl testing session.
+#
+# Author:      rashforth
+#
+# Created:     23/10/2012
+# Copyright:   (c) Plantronics 2012
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+
+from os import path
+
+import sys
+import time
+
+import pdctest.CallControl.lib.serverControl as sc
+import pdctest.CallControl.lib.call_control_constants as ccc
+
+
+class CallControlSession(object):
+
+
+    def __init__(self, sp_id, platform):
+
+        if sp_id not in ccc.sp_dict:
+            print 'Error, invalid softphone id \'%s\'entered' % sp_id
+            sys.exit(1)
+
+        if platform not in ccc.sp_platforms:
+            print 'Error, invalid platform \'%s\' entered' % platform
+            sys.exit(1)
+
+        self.sp_id = sp_id
+        self.platform = platform
+        self.uicontrol_server = None
+        self.autcontrol_server = None
+        self.callcontrol_server = None
+        self.uicontrol_started = False
+        self.autcontrol_started = False
+        self.callcontrol_started = False
+
+    def start(self):
+
+        # First create the ServerControl instances, then start the servers
+        #=================================================================
+
+        # The UI Conctrol server is squishserver
+        self.uicontrol_server = sc.ServerControl('squishserver --verbose')
+
+        aut_path = ccc.get_sp_aut_path(self.sp_id)
+        squishport = ccc.get_sp_squishport(self.sp_id)
+
+        # Command to start the AUT depends on which one it is. At some point
+        # there is always the possibility that the UI control app will not be
+        # squish, but while it is this is the startwinaut command, which runs
+        # the softphone app under squish control.
+        aut_cwd, aut_exename = path.split(aut_path)
+        aut_cmdstring = 'startwinaut --port=%d --cwd=\"%s\" \"%s\"' % (squishport, aut_cwd, aut_path)
+
+        # Strip off the trailing '.exe'
+        aut_procname = (aut_exename.split('.'))[0]
+
+        self.autcontrol_server = sc.ServerControl(aut_cmdstring, aut_procname)
+
+        testsuite_dir = 'C:\\squishdata\\suite_servers_%s' % self.platform
+        testcase_dir = '%s\\tst_%s' % (testsuite_dir, self.sp_id)
+        callcontrol_cmdstring = 'squishrunner --testsuite %s --testcase %s' % (testsuite_dir, testcase_dir)
+        callcontrol_procname = 'callcontrolserver_%s' % self.sp_id
+        self.callcontrol_server = sc.ServerControl(callcontrol_cmdstring, callcontrol_procname)
+
+        # Now we're ready for the actual startup
+        #=======================================
+        status = self.uicontrol_server.start()
+        if status == ccc.STATUS_SUCCESS:
+            print 'uicontrol_server started'
+            self.uicontrol_started = True
+            time.sleep(2)
+            status = self.autcontrol_server.start()
+        else:
+            print 'Error starting uicontrol_server'
+
+        if status == ccc.STATUS_SUCCESS:
+            print 'autcontrol_server started'
+            self.autcontrol_started = True
+            time.sleep(11)
+            status = self.callcontrol_server.start()
+        else:
+            print 'Error starting autcontrol_server'
+
+        if status == ccc.STATUS_SUCCESS:
+            print 'callcontrol_server started'
+            time.sleep(5)
+            self.callcontrol_started = True
+
+        if status is not ccc.STATUS_SUCCESS:
+            # If we did not start all servers successfully, clean up everything
+            # that did succeed
+            self.stop()
+
+        return status
+
+
+    def stop(self):
+
+        if self.uicontrol_server is not None and self.uicontrol_started:
+            self.uicontrol_server.stop()
+
+        if self.autcontrol_server is not None and self.autcontrol_started:
+            self.autcontrol_server.stop()
+
+        if self.callcontrol_server is not None and self.callcontrol_started:
+            self.callcontrol_server.stop()
+
+        return ccc.STATUS_SUCCESS
+
+

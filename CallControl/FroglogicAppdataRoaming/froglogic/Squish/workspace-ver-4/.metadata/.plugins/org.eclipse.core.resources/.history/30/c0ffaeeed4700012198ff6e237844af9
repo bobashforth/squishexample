@@ -1,0 +1,14 @@
+
+def main():
+    startApplication("lync")
+    mouseClick(waitForObject(":Lync_Graphic_2"), 126, 18, MouseButton.RightButton)
+    mouseClick(waitForObject(":Other +18317047167_MenuItem"))
+    mouseClick(waitForObject(":_AccessibleObject_2"), 33, 11, MouseButton.LeftButton)
+    # About to type
+    clickButton(waitForObject(":Page left_Button"))
+    clickButton(waitForObject(":Page left_Button"))
+    clickButton(waitForObject(":Mute Speaker_Button"))
+    clickButton(waitForObject(":Unmute Speaker_Button"))
+    type(waitForObject(":Lync.Search Input_Window"), "<Left>")
+    type(waitForObject(":Lync.Search Input_Window"), "<Left>")
+    type(waitForObject(":Lync.Search Input_Window"), "<Left>")

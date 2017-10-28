@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="C:\squishdata" key="LastSuiteDir"/>
+	<item value="C:\Program Files\7-Zip" key="MappedAUTDirectory"/>
+	<item value="C:\pdctest\CallControl" key="LastOpenSuiteDir"/>
+	<list key="URLCache">
+		<item value="http://myanywear.com/login"/>
+	</list>
+	<section name="com.froglogic.squish.ui.RecordSettingsDialog">
+		<item value="http://myanywear.com/login" key="lastUsedUrl"/>
+		<item value="lync" key="lastUsedAut"/>
+	</section>
+</section>

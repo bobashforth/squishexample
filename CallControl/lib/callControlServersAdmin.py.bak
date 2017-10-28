@@ -1,0 +1,170 @@
+#-------------------------------------------------------------------------------
+# Name:         callControlServer
+# Purpose:      This is the server portion of the CallControl client-server
+#               ikmplementation. It received dictionaries from clients
+#               requesting CallControl methods, dispatches them appropriately,
+#               and returns a dictionary with the status value of the call.
+#
+# Author:       rashforth
+#
+# Created:      29/09/2012
+# Copyright:    (c) Plantronics 2012
+# Licence:      <your licence>
+#-------------------------------------------------------------------------------
+
+import pdctest.CallControl.lib.call_control_constants as ccc
+from pdctest.CallControl.lib.uiControlSession import UIControlSession
+
+import sys
+import socket
+import os
+import pickle
+from multiprocessing import connection
+
+class CallControlServersAdmin(object):
+
+    def __init__(self):
+        self.port = ccc.CCS_ADMIN_PORT
+        #self.host_name = '192.168.2.2'
+        self.host_name = socket.gethostbyname(socket.gethostname())
+        self.listener = connection.Listener((self.host_name, self.port))
+        self.shutdownreceived = False
+        self.session_control = None
+
+
+    def start(self):
+        status = ccc.STATUS_SUCCESS
+        while not self.shutdownreceived:
+            self.serve_clients()
+
+        if self.session_control is not None:
+            status = self.stop_servers()
+
+        return status
+
+
+    def shutdown(self):
+        # Just set the flag and let the server wind down in due course
+        self.shutdownreceived = True
+
+    def start_servers(self, platform, sp_id, mp_id):
+
+        # Start up the servers and leave them running until the client sends a
+        # stop_servers request.
+
+        print 'Starting ControlSession servers...'
+        self.session_control = UIControlSession(platform, sp_id, mp_id)
+
+        if self.session_control is None:
+            print 'Error creating session_control instance'
+            status = ccc.STATUS_FAILURE
+        else:
+            status = self.session_control.start()
+            if status is not ccc.STATUS_SUCCESS:
+                print 'Error starting ControlSession servers'
+
+        return status
+
+
+    def stop_servers(self):
+
+        if self.session_control is not None:
+            status = self.session_control.stop()
+            if status is not ccc.STATUS_SUCCESS:
+                print 'Error stopping call control servers'
+            else:
+                self.session_control = None
+
+        else:
+            print 'Error stopping call control servers, they are not running'
+            status = ccc.STATUS_FAILURE
+
+        return status
+
+
+    def serve_clients(self):
+
+        status = ccc.STATUS_SUCCESS
+
+        try:
+            conn = self.listener.accept()
+        except Exception as e:
+            print 'Exception in accepting connection request'
+            print str( e.args)
+            return ccc.STATUS_FAILURE
+
+        clientdone = False
+        while not clientdone:
+            try:
+                argdict = conn.recv()
+
+            except EOFError as e:
+                status = ccc.STATUS_SUCCESS
+                print 'Ending connection for this client'
+                clientdone = True
+                break
+
+            # Extract method arguments
+            if 'method' in argdict:
+                methodname = argdict['method']
+            else:
+                print 'Error, required argument \'method\' not supplied'
+                status = ccc.STATUS_FAILURE
+                break
+
+            if methodname == 'shutdown':
+                self.shutdownreceived = True
+                status = ccc.STATUS_SUCCESS
+
+            elif methodname == 'start_servers':
+                status = ccc.STATUS_SUCCESS
+
+                if 'platform' not in argdict:
+                    print 'Error, required argument \'platform\' not provided'
+                    status = ccc.STATUS_FAILURE
+                else:
+                    platform = argdict['platform']
+                    if platform is None or platform not in ccc.sp_platforms:
+                        print 'Error, invalid platform value provided'
+                        status = ccc.STATUS_FAILURE
+
+                if 'sp_id' not in argdict:
+                    print 'Error, required argument \'sp_id\' not provided'
+                    status = ccc.STATUS_FAILURE
+                else:
+                    sp_id = argdict['sp_id']
+                    print 'sp_id provided is %s' % sp_id
+
+                if 'mp_id' not in argdict:
+                    print 'Error, required argument \'mp_id\' not provided'
+                    status = ccc.STATUS_FAILURE
+                else:
+                    mp_id = argdict['mp_id']
+                    print 'mp_id provided is %s' % mp_id
+
+                if not sp_id and not mp_id:
+                    print 'Error, at least one of sp_id and mp_id must be non-empty'
+                    status = ccc.STATUS_FAILURE
+
+                if status == ccc.STATUS_SUCCESS:
+                    status = self.start_servers(platform, sp_id, mp_id)
+
+            elif methodname == 'stop_servers':
+                status = self.stop_servers()
+
+            else:
+                print 'Error, unknown method %s passed' % methodname
+                status = ccc.STATUS_FAILURE
+
+            # Construct and send status reply
+            statusdict = {'status' : str(status)}
+            try:
+                conn.send(statusdict)
+            except Exception as e:
+                print 'Exception in attempt to send message'
+                print str( e.args)
+                clientdone = True
+
+        conn.close()
+
+        return status

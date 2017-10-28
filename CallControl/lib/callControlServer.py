@@ -1,0 +1,116 @@
+#-------------------------------------------------------------------------------
+# Name:         callControlServer
+# Purpose:      This is the server portion of the CallControl client-server
+#               implementation. It receives dictionaries from clients
+#               requesting CallControl methods, dispatches them appropriately,
+#               and returns a dictionary with the status value of the call.
+#
+# Author:       rashforth
+#
+# Created:      29/09/2012
+# Copyright:    (c) Plantronics 2012
+# Licence:      <your licence>
+#-------------------------------------------------------------------------------
+
+import exceptions
+import __builtin__
+import socket
+
+import pdctest.CallControl.lib.callControlFactory as ccf
+import pdctest.CallControl.lib.call_control_constants as ccc
+import sys
+import os
+import pickle
+from multiprocessing import connection
+
+class CallControlServer(__builtin__.object):
+
+    def __init__(self, sp_id):
+        self.sp_id = sp_id
+        self.port = ccc.get_sp_port(sp_id)
+        self.host_name = socket.gethostbyname(socket.gethostname())
+        #self.host_name = '192.168.2.2'
+        self.softphone = ccf.getCallControlInstance(self.sp_id)
+        self.listener = connection.Listener((self.host_name, self.port))
+        self.shutdownreceived = False
+
+    def run(self):
+        while not self.shutdownreceived:
+            self.serve_client()
+
+    def serve_client(self):
+        try:
+            conn = self.listener.accept()
+        except Exception as e:
+            print 'Exception in accepting connection request'
+            print str( e.args)
+            return 1
+
+        clientdone = False
+        while not clientdone:
+            status = ccc.STATUS_SUCCESS
+            try:
+                argdict = conn.recv()
+
+            except EOFError as e:
+                print 'Ending connection for this client'
+                clientdone = True
+                break
+
+            # Extract method arguments
+            methodname = argdict['method']
+            if 'optype' in argdict:
+                optype = __builtin__.int(argdict['optype'])
+
+            if 'contact' in argdict:
+                contact = argdict['contact']
+            if 'contact_one' in argdict:
+                contact_one = argdict['contact_one']
+            if 'contact_two' in argdict:
+                contact_two = argdict['contact_two']
+
+            if methodname == 'shutdown':
+                self.shutdownreceived = True
+            elif methodname == 'PlaceCall':
+                status = self.softphone.PlaceCall(optype, contact)
+            elif methodname == 'setAutoAnswer':
+                status = self.softphone.setAutoAnswer(optype)
+            elif methodname == 'AnswerCall':
+                status = self.softphone.AnswerCall(optype)
+            elif methodname == 'DeclineCall':
+                status = self.softphone.DeclineCall(optype)
+            elif methodname == 'EndCall':
+                status = self.softphone.EndCall(optype)
+            elif methodname == 'SetCallMuting':
+                status = self.softphone.SetCallMuting(optype)
+            elif methodname == 'HoldResumeCall':
+                status = self.softphone.HoldResumeCall(optype)
+            elif methodname == 'TransferCall':
+                status = self.softphone.TransferCall(optype, contact_two, contact_one)
+            elif methodname == 'TransferCallAudio':
+                status = self.softphone.TransferCallAudio(optype)
+            elif methodname == 'AdjustCallVolume':
+                status = self.softphone.AdjustCallVolume(optype)
+            elif methodname == 'ConferenceCall':
+                status = self.softphone.ConferenceCall(optype, contact_one, contact_two)
+            elif methodname == 'stateCheck':
+                status = self.softphone.stateCheck(optype, contact)
+            elif methodname == 'checkUserState':
+                status = self.softphone.checkUserState()
+            else:
+                print 'Error, unknown method \'%s\' passed' % methodname
+                status = ccc.STATUS_FAILURE
+                self.shutdownreceived = True
+
+            # Construct and send status reply
+            statusdict = {'status' : str(status)}
+            try:
+                conn.send(statusdict)
+            except Exception as e:
+                print 'Exception in attempt to send message'
+                print str( e.args)
+                clientdone = True
+
+        conn.close()
+
+

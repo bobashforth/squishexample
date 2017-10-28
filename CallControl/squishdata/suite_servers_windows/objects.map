@@ -1,0 +1,153 @@
+:&Lync _MenuItem	{text='&Lync ' type='MenuItem'}
+:+1 (831) 704-7167.Voice Controls Status_Label	{container=':+1 (831) 704-7167_Window' text='Voice Controls Status' type='Label'}
+:+1 (831) 704-7167_Window	{text='‪‎+1 (831) 704-7167‎‬' type='Window'}
+:8317047167_Graphic	{container=':8317047167_Window' type='Graphic'}
+:8317047167_Window	{text='8317047167' type='Window'}
+:918317047167_Graphic	{container=':918317047167_Window' occurrence='8' type='Graphic'}
+:918317047167_Graphic_2	{container=':918317047167_Window' type='Graphic'}
+:918317047167_Window	{text='918317047167' type='Window'}
+:?* Lync 2010.Adjust volume or mute speakers_Button	{container=':callInProgress_Window' text='Adjust volume or mute speakers' type='Button'}
+:?* Lync 2010.Change the audio device for this call_Button	{container=':callInProgress_Window' text='Change the audio device for this call' type='Button'}
+:?* Lync 2010.End call (Alt+Q)_Button	{container=':callInProgress_Window' text='End call (Alt+Q)' type='Button'}
+:?* Lync 2010.TRANSFER_Button	{container=':callInProgress_Window' text='TRANSFER' type='Button'}
+:?*.Header Pane Primary Text_Label	{container=':callInProgress_Window' text='Header Pane Primary Text' type='Label'}
+:?*.Select the location you want to use to join the conference call_Button	{container=':callInProgress_Window' text='Select the location you want to use to join the conference call' type='Button'}
+:?*_AccessibleObject	{container=':callInProgress_Window' occurrence='4' role='Pane' type='AccessibleObject'}
+:Answer incoming calls automatically_CheckBox	{container=':_Window' text='Answer incoming calls automatically' type='CheckBox'}
+:Answer_Button	{text='Answer' type='Button'}
+:Call +1 (831) 458-5195_Button	{container=':_Window_4' text='Call +1 (831) 458-5195' type='Button'}
+:Call the Group_MenuItem	{text='Call the Group' type='MenuItem'}
+:Call_MenuItem	{text='Call' type='MenuItem'}
+:Click to Call Popup.Work_MenuItem	{container=':Click to Call Popup_Window' text='Work' type='MenuItem'}
+:Click to Call Popup_Window	{text='Click to Call Popup' type='Window'}
+:Close_Button	{text='Close' type='Button'}
+:End call_Button	{container=':_Window_4' text='End call' type='Button'}
+:Exit_MenuItem	{container=':_ContextMenu' text='Exit' type='MenuItem'}
+:Exit_MenuItem_2	{text='Exit' type='MenuItem'}
+:File.Exit_MenuItem	{container=':File_MenuItem' text='Exit' type='MenuItem'}
+:File_MenuItem	{container=':Microsoft Lync          _MenuBar' text='File' type='MenuItem'}
+:File_MenuItem_2	{text='File' type='MenuItem'}
+:Headset Blackwire C720-M_MenuItem	{text='Headset Blackwire C720-M' type='MenuItem'}
+:Headset_ListItem	{container=':_Window' text='Headset' type='ListItem'}
+:Hold_MenuItem	{text='Hold' type='MenuItem'}
+:Lync - Signed in (Available)_Button	{container=':_SystemTray' text='‪‎Lync - Signed in (Available)‎‬' type='Button'}
+:Lync - Signed in (In a call)_Button	{container=':_SystemTray' text='‪‎Lync - Signed in (In a call)‎‬' type='Button'}
+:Lync Callout_Window	{container=':_Window' occurrence='2' text='Lync Callout' type='Window'}
+:Lync.No_Button	{container=':Lync_Window' text='No' type='Button'}
+:Lync.OK_Button	{container=':Lync_Dialog' text='OK' type='Button'}
+:Lync.OK_Button_2	{container=':Lync_Window' text='OK' type='Button'}
+:Lync.Search Input_Window	{container=':Lync_Window' text='Search Input' type='Window'}
+:Lync.Yes_Button	{container=':Lync_Dialog' text='Yes' type='Button'}
+:Lync.Yes_Button_2	{container=':Lync_Window' text='Yes' type='Button'}
+:Lync_Dialog	{text='Lync' type='Dialog'}
+:Lync_Graphic	{container=':Lync_Window' occurrence='20' type='Graphic'}
+:Lync_Graphic_2	{container=':Lync_Window' occurrence='19' type='Graphic'}
+:Lync_Graphic_3	{container=':Lync_Window' occurrence='17' type='Graphic'}
+:Lync_Window	{text='Lync' type='Window'}
+:Microsoft Lync          .+1 (831) 246-2013_ListItem	{container=':Microsoft Lync          _Window' text='+1 (831) 246-2013' type='ListItem'}
+:Microsoft Lync          .+1 (831) 458-5193_ListItem	{container=':Microsoft Lync          _Window' text='+1 (831) 458-5193' type='ListItem'}
+:Microsoft Lync          .+1 (831) 704-7167_ListItem	{container=':Microsoft Lync          _Window' text='+1 (831) 704-7167' type='ListItem'}
+:Microsoft Lync          .0_Button	{container=':Microsoft Lync          _Window' text='0' type='Button'}
+:Microsoft Lync          .1_Button	{container=':Microsoft Lync          _Window' text='1' type='Button'}
+:Microsoft Lync          .2_Button	{container=':Microsoft Lync          _Window' text='2' type='Button'}
+:Microsoft Lync          .3_Button	{container=':Microsoft Lync          _Window' text='3' type='Button'}
+:Microsoft Lync          .4_Button	{container=':Microsoft Lync          _Window' text='4' type='Button'}
+:Microsoft Lync          .5_Button	{container=':Microsoft Lync          _Window' text='5' type='Button'}
+:Microsoft Lync          .6_Button	{container=':Microsoft Lync          _Window' text='6' type='Button'}
+:Microsoft Lync          .7_Button	{container=':Microsoft Lync          _Window' text='7' type='Button'}
+:Microsoft Lync          .8_Button	{container=':Microsoft Lync          _Window' text='8' type='Button'}
+:Microsoft Lync          .9_Button	{container=':Microsoft Lync          _Window' text='9' type='Button'}
+:Microsoft Lync          .Activity Feeds_Button	{container=':Microsoft Lync          _Window' text='Activity Feeds' type='Button'}
+:Microsoft Lync          .Call +1 (831) 458-5193_Button	{container=':Microsoft Lync          _Window' text='Call +1 (831) 458-5193' type='Button'}
+:Microsoft Lync          .Call +1 (831) 458-5195_Button	{container=':Microsoft Lync          _Window' text='Call +1 (831) 458-5195' type='Button'}
+:Microsoft Lync          .Call_Button	{container=':Microsoft Lync          _Window' text='Call' type='Button'}
+:Microsoft Lync          .Contacts_Button	{container=':Microsoft Lync          _Window' text='Contacts' type='Button'}
+:Microsoft Lync          .Conversations_Button	{container=':Microsoft Lync          _Window' text='Conversations' type='Button'}
+:Microsoft Lync          .Phone_Button	{container=':Microsoft Lync          _Window' text='Phone' type='Button'}
+:Microsoft Lync          .Primus_auto_01 Lync 2010_ListItem	{container=':Microsoft Lync          _Window' text='Primus_auto_01 Lync 2010' type='ListItem'}
+:Microsoft Lync          _AccessibleObject	{container=':Microsoft Lync          _Window' occurrence='5' role='Pane' type='AccessibleObject'}
+:Microsoft Lync          _AccessibleObject_2	{container=':Microsoft Lync          _Window' role='OutlineItem' type='AccessibleObject'}
+:Microsoft Lync          _Edit	{container=':Microsoft Lync          _Window' occurrence='3' type='Edit'}
+:Microsoft Lync          _Edit_2	{container=':Microsoft Lync          _Window' occurrence='13' type='Edit'}
+:Microsoft Lync          _Edit_3	{container=':Microsoft Lync          _Window' occurrence='5' type='Edit'}
+:Microsoft Lync          _Edit_4	{container=':Microsoft Lync          _Window' occurrence='7' type='Edit'}
+:Microsoft Lync          _Edit_5	{container=':Microsoft Lync          _Window' occurrence='11' type='Edit'}
+:Microsoft Lync          _Edit_6	{container=':Microsoft Lync          _Window' occurrence='9' type='Edit'}
+:Microsoft Lync          _MenuBar	{container=':Microsoft Lync          _Window' type='MenuBar'}
+:Microsoft Lync          _Window	{text='Microsoft Lync          ' type='Window'}
+:Microsoft Lync          _Window_2	{container=':Microsoft Lync          _Window' occurrence='3' text='' type='Window'}
+:Microsoft Lync          _WindowsControl	{class='DirectUIHWND' container=':Microsoft Lync          _Window' type='WindowsControl'}
+:Mute Speaker_Button	{container=':_Window' text='Mute Speaker' type='Button'}
+:Options..._MenuItem	{text='Options...' type='MenuItem'}
+:Other +18312462013_MenuItem	{container=':_Window' text='Other +18312462013' type='MenuItem'}
+:Other +18317047167_MenuItem	{container=':_Window' text='Other +18317047167' type='MenuItem'}
+:PC Mic and Speakers Your computer's default setup_MenuItem	{text='PC Mic and Speakers Your computer\\'s default setup' type='MenuItem'}
+:PC Mic and Speakers_ListItem	{container=':_Window' text='PC Mic and Speakers' type='ListItem'}
+:Page left_Button	{container=':_Window' text='Page left' type='Button'}
+:Page right_Button	{container=':_Window' text='Page right' type='Button'}
+:Phone Call from 8317047167.  Press Windows key plus A to accept._Button	{container=':Phone Call from 8317047167.  Press Windows key plus A to accept._Window' text='' type='Button'}
+:Phone Call from 8317047167.  Press Windows key plus A to accept._Window	{text='Phone Call from 8317047167.  Press Windows key plus A to accept.' type='Window'}
+:Phone Call from Primus_auto_01 Lync 2010.  Press Windows key plus A to accept._Button	{container=':Phone Call from Primus_auto_01 Lync 2010.  Press Windows key plus A to accept._Window' text='' type='Button'}
+:Phone Call from Primus_auto_01 Lync 2010.  Press Windows key plus A to accept._Button_2	{container=':Phone Call from Primus_auto_01 Lync 2010.  Press Windows key plus A to accept._Window' occurrence='3' text='' type='Button'}
+:Phone Call from Primus_auto_01 Lync 2010.  Press Windows key plus A to accept._Window	{text='Phone Call from Primus_auto_01 Lync 2010.  Press Windows key plus A to accept.' type='Window'}
+:PrimusAuto01 Plantronics_ListItem	{container=':_Window' text='PrimusAuto01 Plantronics' type='ListItem'}
+:PrimusAuto03 Plantronics_ListItem	{container=':_Window_3' text='PrimusAuto03 Plantronics' type='ListItem'}
+:PrimusAuto03 Plantronics_ListItem_2	{container=':_Window' text='PrimusAuto03 Plantronics' type='ListItem'}
+:PrimusAuto04 Plantronics_ListItem	{container=':_Window_3' text='PrimusAuto04 Plantronics' type='ListItem'}
+:PrimusAuto04 Plantronics_ListItem_2	{container=':_Window' text='PrimusAuto04 Plantronics' type='ListItem'}
+:PrimusAuto04 Plantronics_MenuItem	{text='PrimusAuto04 Plantronics' type='MenuItem'}
+:Primus_auto_01 Lync 2010 (Available) primus_auto_01@pltbluesky.com_Button	{container=':Primus_auto_01 Lync 2010 (Available) primus_auto_01@pltbluesky.com_Window' text='' type='Button'}
+:Primus_auto_01 Lync 2010 (Available) primus_auto_01@pltbluesky.com_Window	{text='Primus_auto_01 Lync 2010 (Available) primus_auto_01@pltbluesky.com' type='Window'}
+:Primus_auto_01 Lync 2010.Answer incoming call from Primus_auto_01 Lync 2010 (primus_auto_01@pltbluesky.com) (Alt+C)_Button	{container=':Primus_auto_01 Lync 2010_Window' text='Answer incoming call from Primus_auto_01 Lync 2010 (primus_auto_01@pltbluesky.com) (Alt+C)' type='Button'}
+:Primus_auto_01 Lync 2010.End call (Alt+Q)_Button	{container=':Primus_auto_01 Lync 2010_Window' text='End call (Alt+Q)' type='Button'}
+:Primus_auto_01 Lync 2010.Hold (Ctrl+Shift+H)_Button	{container=':Primus_auto_01 Lync 2010_Window' text='Hold (Ctrl+Shift+H)' type='Button'}
+:Primus_auto_01 Lync 2010.Mute microphone_Button	{container=':Primus_auto_01 Lync 2010_Window' text='Mute microphone' type='Button'}
+:Primus_auto_01 Lync 2010.Resume call_Button	{container=':Primus_auto_01 Lync 2010_Window' text='Resume call' type='Button'}
+:Primus_auto_01 Lync 2010.Unmute microphone_Button	{container=':Primus_auto_01 Lync 2010_Window' text='Unmute microphone' type='Button'}
+:Primus_auto_01 Lync 2010_WindowsControl	{class='DirectUIHWND' container=':Primus_auto_01 Lync 2010_Window' type='WindowsControl'}
+:Primus_auto_02 Lync 2010_WindowsControl	{class='DirectUIHWND' container=':Primus_auto_02 Lync 2010_Window' type='WindowsControl'}
+:Quit Skype?.Quit_Button	{container=':Quit Skype?_Window' text='Quit' type='Button'}
+:Quit Skype?_Window	{text='Quit Skype?' type='Window'}
+:Quit_Button	{container=':_Window' text='Quit' type='Button'}
+:Quit_MenuItem	{text='Quit' type='MenuItem'}
+:Resume_MenuItem	{text='Resume' type='MenuItem'}
+:Save_Button	{container=':_Window' text='Save' type='Button'}
+:Show advanced options_Button	{container=':_Window' text='Show advanced options' type='Button'}
+:Skype (Online)_Button	{container=':_SystemTray' text='Skype (Online)' type='Button'}
+:Skype_MenuItem	{container=':_Window_3' text='Skype' type='MenuItem'}
+:Skype_MenuItem_2	{container=':_Window_4' text='Skype' type='MenuItem'}
+:Speaker Volume Popup_Slider	{container=':Speaker Volume Popup_Window' type='Slider'}
+:Speaker Volume Popup_Window	{text='Speaker Volume Popup' type='Window'}
+:Start a Conference Call_MenuItem	{text='Start a Conference Call' type='MenuItem'}
+:Tools_MenuItem	{text='Tools' type='MenuItem'}
+:Transfer Call..._MenuItem	{text='Transfer Call...' type='MenuItem'}
+:Transfer Call.Cancel_Button	{container=':Transfer Call_Dialog' text='Cancel' type='Button'}
+:Transfer Call.OK_Button	{container=':Transfer Call_Dialog' text='OK' type='Button'}
+:Transfer Call_Dialog	{text='Transfer Call' type='Dialog'}
+:Transfer Call_WindowsControl	{class='DirectUIHWND' container=':Transfer Call_Dialog' type='WindowsControl'}
+:Transfer_Button	{container=':_Window_3' text='Transfer' type='Button'}
+:Transfer_MenuItem	{text='Transfer' type='MenuItem'}
+:Unmute Speaker_Button	{container=':_Window' text='Unmute Speaker' type='Button'}
+:Windows Media Player.Mute_Button	{container=':Windows Media Player_Window' text='Mute' type='Button'}
+:Windows Media Player.Play_Button	{container=':Windows Media Player_Window' occurrence='2' text='Play' type='Button'}
+:Windows Media Player.Turn repeat off_Button	{container=':Windows Media Player_Window' text='Turn repeat off' type='Button'}
+:Windows Media Player.Turn repeat on_Button	{container=':Windows Media Player_Window' text='Turn repeat on' type='Button'}
+:Windows Media Player_Window	{text='Windows Media Player' type='Window'}
+:_AccessibleObject	{container=':_Window' occurrence='9' role='OutlineItem' type='AccessibleObject'}
+:_AccessibleObject_2	{container=':_Window' occurrence='2' role='PageTab' type='AccessibleObject'}
+:_AccessibleObject_3	{container=':_Window' role='PageTab' type='AccessibleObject'}
+:_AccessibleObject_4	{container=':_Window' role='Unknown' type='AccessibleObject'}
+:_ContextMenu	{type='ContextMenu'}
+:_MenuItem	{text='' type='MenuItem'}
+:_SystemTray	{type='SystemTray'}
+:_TitleBar	{type='TitleBar'}
+:_TitleBar_2	{occurrence='2' type='TitleBar'}
+:_Window	{type='Window'}
+:_Window_2	{container=':_Window' occurrence='8' type='Window'}
+:_Window_3	{occurrence='2' type='Window'}
+:_Window_4	{occurrence='3' type='Window'}
+:_WindowsControl	{class='MsCommunicatorToastPopup' type='WindowsControl'}
+:_WindowsControl_2	{class='NativeHWNDHost' container=':_WindowsControl' type='WindowsControl'}
+:_WindowsControl_3	{class='DUIPopupMenu' type='WindowsControl'}
+:_WindowsControl_4	{class='DirectUIHWND' container=':_WindowsControl_3' type='WindowsControl'}
+:callInProgress_Window	{text?='‪‎?*‎‬' type='Window'}

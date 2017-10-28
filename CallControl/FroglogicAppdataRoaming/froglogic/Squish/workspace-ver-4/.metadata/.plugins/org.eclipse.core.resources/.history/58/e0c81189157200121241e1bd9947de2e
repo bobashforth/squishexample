@@ -1,0 +1,8 @@
+
+def main():
+    startApplication("lync")
+    mouseClick(waitForObject(":_AccessibleObject_4"), 137, 33, MouseButton.LeftButton)
+    mouseClick(waitForObject(":8317047167_Graphic"), 16, 23, MouseButton.LeftButton)
+    mouseClick(waitForObject(":_AccessibleObject_4"), 74, 182, MouseButton.LeftButton)
+    mouseClick(waitForObject(":_AccessibleObject_4"), 74, 182, MouseButton.LeftButton)
+    mouseClick(waitForObject(":_AccessibleObject_4"), 123, 186, MouseButton.LeftButton)

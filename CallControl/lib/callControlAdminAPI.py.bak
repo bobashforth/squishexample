@@ -1,0 +1,108 @@
+#-------------------------------------------------------------------------------
+# Name:         CallControlAdminAPI
+# Purpose:      This class defines the API for the CallControlServersAdmin server,
+#               which will start/stop all needed CallControl servers for a specific
+#               softphone type and platform on request.
+#
+# Author:      rashforth
+#
+# Created:     19/07/2012
+# Copyright:   (c) Plantronics 2012
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+
+import call_control_constants as ccc
+
+import socket
+#import pickle
+import sys
+import time
+
+from multiprocessing import connection
+
+
+class CallControlAdminAPI(object):
+
+    def __init__(self, host_name=None):
+        #host_name = '192.168.2.2'
+        if host_name is None:
+            self.host_name = socket.gethostbyname(socket.gethostname())
+        else:
+            self.host_name = host_name
+        print 'host_name is %s' % self.host_name
+
+        try:
+            print 'Establishing client connection at %s, %d' % (self.host_name, ccc.CCS_ADMIN_PORT)
+            self.conn = connection.Client((self.host_name, ccc.CCS_ADMIN_PORT))
+            print 'Connection established'
+        except Exception as e:
+            print 'Exception in attempt to connect to %s at %d' % (self.host_name, ccc.CCS_ADMIN_PORT)
+            print e.args
+
+
+    def Terminate(self):
+        self.conn.close()
+
+
+    def sendMessage(self, argdict):
+        status = ccc.STATUS_SUCCESS
+        try:
+            self.conn.send(argdict)
+        except Exception as e:
+            print 'Error in sendMessage() send'
+            print e.args
+
+        time.sleep(1)
+
+        try:
+            statusdict = self.conn.recv()
+            if statusdict and 'status' in statusdict:
+                status = int(statusdict['status'])
+            else:
+                print 'Received error status through statusdict'
+                status = ccc.STATUS_FAILURE
+
+        except Exception as e:
+            print 'Error in sendMessage() receiving status'
+            print e.args
+            status = ccc.STATUS_FAILURE
+
+        return status
+
+
+    def start_servers(self, platform, sp_id, mp_id):
+        argdict = {
+            'method' : 'start_servers',
+            'sp_id' : sp_id,
+            'mp_id' : mp_id,
+            'platform' : platform,
+            }
+        status = self.sendMessage(argdict)
+        return status
+
+
+    def stop_servers(self):
+        argdict = {
+        'method' : 'stop_servers',
+        }
+        status = self.sendMessage(argdict)
+        return status
+
+        status = self.sendMessage(argdict)
+        return status
+
+
+def main():
+    sp_id = "microsoft_lync"
+    platform = "windows"
+    adminAPI = CallControlAdminAPI()
+    status = adminAPI.start_servers(sp_id, platform)
+    if status == ccc.STATUS_SUCCESS:
+        print 'Started CallControl servers for \'%s\' on %s' % (sp_id, platform)
+    else:
+        print 'Error, failed to start CallControl servers for \'%s\' on %s' % (sp_id, platform)
+        print 'Error code = %d' % status
+
+
+if __name__ == '__main__':
+    sys.exit(main())

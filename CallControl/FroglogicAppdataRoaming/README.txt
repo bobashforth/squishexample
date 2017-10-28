@@ -1,0 +1,1 @@
+The froglogic directory tree in this directory needs to be copied to the path C:\USers\<username>\Appdata\Roaming, where <username> is the user name of the account which will be using squish. This is necessary to install critical configuration files that reside in the tree.

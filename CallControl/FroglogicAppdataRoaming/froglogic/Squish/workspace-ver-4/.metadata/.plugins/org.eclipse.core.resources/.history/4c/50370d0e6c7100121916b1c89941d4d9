@@ -1,0 +1,8 @@
+
+def main():
+    startApplication("lync")
+    mouseClick(waitForObject(":Lync_Graphic_2"), 166, 22, MouseButton.RightButton)
+    mouseClick(waitForObject(":Other +18317047167_MenuItem"))
+    mouseClick(waitForObject(":_AccessibleObject_2"), 38, 12, MouseButton.LeftButton)
+    mouseClick(waitForObject(":PC Mic and Speakers_ListItem"))
+    mouseClick(waitForObject(":Headset_ListItem"))

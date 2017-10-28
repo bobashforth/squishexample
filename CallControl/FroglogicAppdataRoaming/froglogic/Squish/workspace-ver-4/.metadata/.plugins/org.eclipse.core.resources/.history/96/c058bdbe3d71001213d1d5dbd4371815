@@ -1,0 +1,7 @@
+
+def main():
+    startApplication("lync")
+    mouseClick(waitForObject(":Lync_Graphic_3"), 154, 14, MouseButton.RightButton)
+    mouseClick(waitForObject(":Other +18317047167_MenuItem"))
+    mouseClick(waitForObject(":_AccessibleObject_2"), 35, 16, MouseButton.LeftButton)
+    clickButton(waitForObject(":Page right_Button"))

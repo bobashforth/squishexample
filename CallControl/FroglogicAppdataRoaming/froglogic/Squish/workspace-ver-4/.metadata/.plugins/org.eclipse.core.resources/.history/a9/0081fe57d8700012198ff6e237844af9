@@ -1,0 +1,15 @@
+
+def main():
+    startApplication("lync")
+    mouseClick(waitForObject(":Lync_Graphic_3"), 132, 13, MouseButton.RightButton)
+    mouseClick(waitForObject(":Other +18317047167_MenuItem"))
+    mouseClick(waitForObject(":_AccessibleObject_2"), 38, 11, MouseButton.LeftButton)
+    type(waitForObject(":Lync Callout_Window"), "<Left>")
+    type(waitForObject(":Lync Callout_Window"), "<Left>")
+    type(waitForObject(":Lync Callout_Window"), "<Left>")
+    type(waitForObject(":Lync Callout_Window"), "<Right>")
+    type(waitForObject(":Lync Callout_Window"), "<Right>")
+    type(waitForObject(":Lync Callout_Window"), "<Right>")
+    type(waitForObject(":Lync Callout_Window"), "<Left>")
+    type(waitForObject(":Lync Callout_Window"), "<Left>")
+    type(waitForObject(":Lync Callout_Window"), "<Left>")
